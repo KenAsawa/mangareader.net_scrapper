@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './html_scraper.dart';
+import './chapter_page.dart';
 
 void main() {
   //runApp(MyApp());
@@ -34,18 +35,17 @@ class MyApp extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SecondRoute()),
+                  MaterialPageRoute(builder: (context) => ChapterPage()),
                 );
               },
               child: new Container(
                 child: new Column(
                   children: [
                     Image.asset('assets/images/one-piece-cover.jpg'),
-                    Text('Item $index')
+                    Text('One Piece')
                   ]
                 ),
               )
-
             );
           }),
         ),
@@ -54,21 +54,4 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class SecondRoute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Second Route"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text('Go back!'),
-        ),
-      ),
-    );
-  }
-}
+
