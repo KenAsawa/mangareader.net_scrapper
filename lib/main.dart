@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import './html_scraper.dart';
-import './chapter_page.dart';
+import './series_page.dart';
+import 'package:manga_app/html_scraper.dart';
 
 void main() {
-  //runApp(MyApp());
   runApp(MaterialApp(
     title: 'Navigation Basics',
     home: MyApp(),
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ChapterPage()),
+                  MaterialPageRoute(builder: (context) => SeriesPage()),
                 );
               },
               child: new Container(

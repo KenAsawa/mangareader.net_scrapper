@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './html_scraper.dart';
 
 class ChapterPage extends StatefulWidget {
   @override
@@ -9,9 +10,8 @@ class ChapterPage extends StatefulWidget {
 
 class _ChapterPageState extends State<ChapterPage> {
   int pageIndex = 0;
-
-  List<String> chapterImages = [
-  ];
+  List<String> chapter = [];
+  List<String> chapterImages = [];
 
   void initState() { //Method runs when widget is first drawn.
     chapterImages.add('assets/images/one-piece-11874343.jpg');
@@ -30,6 +30,7 @@ class _ChapterPageState extends State<ChapterPage> {
     chapterImages.add('assets/images/one-piece-11874421.jpg');
     chapterImages.add('assets/images/one-piece-11874427.jpg');
     chapterImages.add('assets/images/one-piece-11874433.jpg');
+    loadChapter();
     super.initState();
   }
 
@@ -42,6 +43,19 @@ class _ChapterPageState extends State<ChapterPage> {
   void _nextImage() {
     setState(() {
       pageIndex = pageIndex < chapterImages.length - 1 ? pageIndex + 1 : pageIndex;
+    });
+  }
+
+  Future<List<String>> getChapter() async {
+    HtmlScraper htmlScraper = HtmlScraper();
+    return await htmlScraper.initiate();
+  }
+
+  void loadChapter() {
+    getChapter().then((result) {
+      setState(() {
+        chapter = result;
+      });
     });
   }
 
