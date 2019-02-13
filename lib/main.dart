@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import './html_scraper.dart';
+import './chapter_page.dart';
+
 import './series_page.dart';
-import 'package:manga_app/html_scraper.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -32,26 +32,21 @@ class MyApp extends StatelessWidget {
           // Generate 20 Widgets that display their index in the List
           children: List.generate(1, (index) {
             return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SeriesPage()),
-                );
-              },
-              child: new Container(
-                child: new Column(
-                  children: [
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ChapterPage()),
+                  );
+                },
+                child: new Container(
+                  child: new Column(children: [
                     Image.asset('assets/images/one-piece-cover.jpg'),
                     Text('One Piece')
-                  ]
-                ),
-              )
-            );
+                  ]),
+                ));
           }),
         ),
       ),
     );
   }
 }
-
-

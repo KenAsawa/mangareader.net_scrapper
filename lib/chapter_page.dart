@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+
 import './html_scraper.dart';
 
 class ChapterPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() { //Constructor
+  State<StatefulWidget> createState() {
+    //Constructor
     return _ChapterPageState();
   }
 }
@@ -13,7 +15,8 @@ class _ChapterPageState extends State<ChapterPage> {
   List<String> chapter = [];
   List<String> chapterImages = [];
 
-  void initState() { //Method runs when widget is first drawn.
+  void initState() {
+    //Method runs when widget is first drawn.
     chapterImages.add('assets/images/one-piece-11874343.jpg');
     chapterImages.add('assets/images/one-piece-11874349.jpg');
     chapterImages.add('assets/images/one-piece-11874355.jpg');
@@ -42,7 +45,8 @@ class _ChapterPageState extends State<ChapterPage> {
 
   void _nextImage() {
     setState(() {
-      pageIndex = pageIndex < chapterImages.length - 1 ? pageIndex + 1 : pageIndex;
+      pageIndex =
+          pageIndex < chapterImages.length - 1 ? pageIndex + 1 : pageIndex;
     });
   }
 
@@ -55,6 +59,8 @@ class _ChapterPageState extends State<ChapterPage> {
     getChapter().then((result) {
       setState(() {
         chapter = result;
+        print("Image SRC = ");
+        print(chapter[0]);
       });
     });
   }
@@ -62,35 +68,34 @@ class _ChapterPageState extends State<ChapterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900], //Sets background color on chapter pages.
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            alignment: Alignment.center,
-            child: new Image.asset(chapterImages[pageIndex]
+        backgroundColor: Colors.grey[900],
+        //Sets background color on chapter pages.
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              alignment: Alignment.center,
+              child: new Image.asset(chapterImages[pageIndex]),
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              RaisedButton(
-                child: Text('Prev'),
-                onPressed: _previousImage,
-                elevation: 5.0,
-                color: Colors.green,
-              ),
-              SizedBox(width: 10.0),
-              RaisedButton(
-                child: Text('Next'),
-                onPressed: _nextImage,
-                elevation: 5.0,
-                color: Colors.blue,
-              )
-            ],
-          )
-        ],
-      )
-    );
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                RaisedButton(
+                  child: Text('Prev'),
+                  onPressed: _previousImage,
+                  elevation: 5.0,
+                  color: Colors.green,
+                ),
+                SizedBox(width: 10.0),
+                RaisedButton(
+                  child: Text('Next'),
+                  onPressed: _nextImage,
+                  elevation: 5.0,
+                  color: Colors.blue,
+                )
+              ],
+            )
+          ],
+        ));
   }
 }

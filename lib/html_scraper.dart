@@ -6,25 +6,20 @@ class HtmlScraper {
   Future initiate() async {
     //Future<List<String>> initiate(int chapterNumber) async {
     var client = Client();
-    String url = 'https://www.mangareader.net/one-piece';
+    String url = 'https://www.mangareader.net/one-piece/932/15';
     Response response = await client.get(url);
 
     if (response.statusCode != 200) {
-      //return [response.body];
+      print(response.body);
       return ["ERROR"];
     }
 
+    List<String> chapter = [];
     // Use html parser
     var document = parse(response.body);
-    List<Element> div = document.getElementsByClassName("chico_manga");
-    List<String> chapter = [];
-    for (var i = 0; i < div[0].nodes.length; i++) {
-      var node = div[0].nodes[i];
-      if (node.toString() == '<html a>') {
-        var text = div[0].nodes[i].text;
-        chapter.add(text);
-      }
-    }
+    Element img = document.getElementById("img");
+    chapter.add(img.attributes["src"]);
+    print(img.attributes["src"]);
     return chapter;
   }
 }
